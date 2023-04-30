@@ -1,6 +1,7 @@
 import Navbar from "./components/navbar/Navbar";
 import "./globals.css";
 import { Nunito } from "next/font/google";
+import ClientOnly from "./components/ClientOnly";
 
 const fond = Nunito({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={fond.className}>
-        <Navbar />
+        <ClientOnly>
+          <Navbar />
+        </ClientOnly>
         {children}
       </body>
     </html>
