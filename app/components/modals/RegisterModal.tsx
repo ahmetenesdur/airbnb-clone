@@ -10,6 +10,7 @@ import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
+import { toast } from "react-hot-toast";
 
 interface RegisterModalProps {}
 
@@ -38,7 +39,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({}) => {
         registerModal.onClose();
       })
       .catch((err) => {
-        console.log(err);
+        toast.error("Something went wrong!");
       })
       .finally(() => {
         setIsLoading(false);
