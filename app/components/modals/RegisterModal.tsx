@@ -7,6 +7,8 @@ import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
+
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
@@ -18,6 +20,8 @@ interface RegisterModalProps {}
 
 const RegisterModal: React.FC<RegisterModalProps> = ({}) => {
   const registerModal = useRegisterModal();
+  const LoginModal = useLoginModal();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -47,6 +51,11 @@ const RegisterModal: React.FC<RegisterModalProps> = ({}) => {
         setIsLoading(false);
       });
   };
+
+  const toggle = useCallback(() => {
+    registerModal.onClose();
+    LoginModal.onOpen();
+  }, [registerModal, LoginModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -101,7 +110,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({}) => {
         <div className="justify-center flex flex-row items-center gap-2">
           <div>Already have an account? </div>
           <div
-            onClick={registerModal.onClose}
+            onClick={toggle}
             className="text-neutral-800 cursor-pointer hover:underline"
           >
             Log in
