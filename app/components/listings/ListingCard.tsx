@@ -1,13 +1,14 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { Listing, Reservation } from "@prisma/client";
-
-import { SafeUser, SafeListing } from "@/app/types";
-import useCountries from "@/app/hooks/useCountries";
-import React, { useCallback, useMemo } from "react";
-import { format } from "date-fns";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useCallback, useMemo } from "react";
+import { format } from "date-fns";
+
+import useCountries from "@/app/hooks/useCountries";
+import { SafeUser, SafeListing } from "@/app/types";
+
+import { Reservation } from "@prisma/client";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
 
@@ -64,7 +65,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
     const start = new Date(reservation.startDate);
     const end = new Date(reservation.endDate);
 
-    return `${format(start, "PP")} - ${format(end, "PP")}`;
+    return `${format(start, `PP`)} - ${format(end, `PP`)}`;
   }, [reservation]);
 
   return (
