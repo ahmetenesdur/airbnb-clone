@@ -20,7 +20,7 @@ interface RegisterModalProps {}
 
 const RegisterModal: React.FC<RegisterModalProps> = ({}) => {
   const registerModal = useRegisterModal();
-  const LoginModal = useLoginModal();
+  const loginModal = useLoginModal();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -43,6 +43,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({}) => {
       .post("/api/register", data)
       .then(() => {
         registerModal.onClose();
+        loginModal.onOpen();
       })
       .catch((err) => {
         toast.error("Something went wrong!");
@@ -54,8 +55,8 @@ const RegisterModal: React.FC<RegisterModalProps> = ({}) => {
 
   const toggle = useCallback(() => {
     registerModal.onClose();
-    LoginModal.onOpen();
-  }, [registerModal, LoginModal]);
+    loginModal.onOpen();
+  }, [registerModal, loginModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
