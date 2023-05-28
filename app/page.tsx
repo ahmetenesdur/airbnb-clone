@@ -2,20 +2,9 @@ import Container from "./components/Container";
 import ListingCard from "./components/listings/ListingCard";
 import EmptyState from "./components/EmptyState";
 
-import getListings from "./actions/getListings";
+import getListings, { IListingsParams } from "./actions/getListings";
 import getCurrentUser from "./actions/getCurrentUser";
 import ClientOnly from "./components/ClientOnly";
-
-interface IListingsParams {
-  userId?: string;
-  guestCount?: number;
-  roomCount?: number;
-  bathroomCount?: number;
-  startDate?: string;
-  endDate?: string;
-  locationValue?: string;
-  category?: string;
-}
 
 interface HomeProps {
   searchParams: IListingsParams;
